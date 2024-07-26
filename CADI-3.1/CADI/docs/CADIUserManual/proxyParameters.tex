@@ -1,0 +1,198 @@
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$ports}} & \multicolumn{4}{|l|}{$\{$int$[$int $[$int $[$ ...$]$$]$$]$$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$p}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Ports where server will be listening to the client requests.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{8080} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$numThreads}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$nt}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Number of threads that will be launched to process client requests.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$type}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$t}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates the type of proxy that will be used. Allowed values are:\newline	1- transparent proxy\newline	2- cached proxy. All data transmitted from servers to clients are cached.\newline	3- cache proxy with prefetching. It is an extension of the "cached proxy" adding the capability of prefetching.\newline OBS: Option 3 can be qualified by "-pwt" or "-pm" parameters. If none of them is set, deafult options to be considered are: "-pdh=3", "-pwt=1", and "-mp=0.1" , respectively} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{3} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$prefetchingDataHistory}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$pdh}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the data, previous windows of interest requested, used to build the actual WOI to be prefetched. Allowed values:\newline	1- uses the history of the windows of interest requested by all clients over an image. View windows are sorted following a FIFO strategy for all clients.\newline	2- prediction of windows of interest to be downloaded are done for each client taken into account only the historic wois for that client.\newline	3- computes the prefetching woi using the lastest window of interest requested by all clients over each image.\newline 	OBS: This option can only be set when the --type parameter is 3 (cached proxy with prefetching).} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{3} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$prefetchingWOIType}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$pwt}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Allows to choose how the Windows of Interest to be prefetching is built from the historic of data. Allowed values:\newline	1- prediction of the window of interest to be prefetched  is based on weighted wois of the historic of windows of interest. Probability of movements can be modified by means of the "-mp" parameter.\newline	2- the window of interest to be prefected is the bounding box of the historic window of interest.\newline OBS: This parameter is only allowed if the "--type" parameter is 3 (cached proxy with prefetching).\newline OBS: This parameter is not compatible with the "-pm" parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$movementProbabilities}} & \multicolumn{4}{|l|}{$\{$float float float float float float float float float float$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$mp}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Probabilities of the movements to be used by the prefetching. Values must be sorted according with the following criterion: right, up\-right, up, up\-left, left, down\-left, down, down\-right, zoom in, zoom out.\newline	 OBS: The sum of all values must be less or equal than 1.\newline	OBS: This option can only be set when the --type parameter is 3 (cached proxy with prefetching) and "-pwt" is 1.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0.1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$predictiveModel}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$pm}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{This parameter indicates that a predictive model, semantic information, is applied in the image delivering and prefetching. Predictive model to be applied is read from a text file located at path given by this parameter and whose name is the same as the compressed image but with the extension "pm". The file must have a line for each spatial region (precinct) with the following format "precinct\_id value", where the precinct\_id is the unique precinct identifier defined in the JPIP protocol and the value is a real number in the range [0, 1] with the relevance of the precinct. The remainder precincts not included in the file will be considered with relevance 0. And if the beginning-of-line character is an \#, it is considered a comment and ignored.\newline OBS: This parameter is only allowed if the "--type" parameter is 3 (cached proxy with prefetching).\newline OBS: This parameter is not compatible with the "-pwt" parameter.\newline OBS: If there is not a semantic file associated with an image, prefetching is done considering the option 1 of the -pwt parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logFile}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$lf}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{File where logs are saved.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logXML}} & \multicolumn{4}{|l|}{$\{$boolean$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$lx}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{XML format is used in the log file. Value is a boolean: 0 indicates simple file format is used and 1 indicates XML format is used.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logEnabled}} & \multicolumn{4}{|l|}{$\{$boolean$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$le}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Enables or disables the log. See the "-ll" parameter for more information about the detail level of logs.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logLevel}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ll}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the severity of the messages which will be logged. The "-le" parameter is set automatically. Available values are:\newline	2- logs informative messages\newline	3- logs warning messages\newline	4- logs error messages\newline when a log level is set, all upper levels are automatically set but lower severity messages are filtered.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{2} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$cacheDirectory}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cd}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Directory used as a temporal directory to save the cache data (not implemented yet).} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$maxRate}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$mr}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the maximum rate (bytes per second) which will be used to delivery data (0 means unlimited).} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$trafficShaping}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ts}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Allows to choose a trafic shaping algorithm. Allowed values are:	0- None algoritm is applied.	1- The token-bucket algoritm is applied. Data are transmitted at the constant rate fixed by the "-mr" parameter rate, but it also allows data busts.	2- The leaky-bucket algoritm is applied. Data are delivered at the constant rate defined in the "-mr" option.OBS: This parameter requires the "-mr" parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$help}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$h}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Displays this help and exits program.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$warranty}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$w}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$liability}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$l}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$copyright}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$c}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}

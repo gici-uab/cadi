@@ -1,0 +1,240 @@
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$ports}} & \multicolumn{4}{|l|}{$\{$int$[$int $[$int $[$ ...$]$$]$$]$$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$p}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Ports where server will listen to the client request.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{80} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$numThreads}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$nt}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Number of threads that will be launched to process the request.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$targetsPath}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$tp}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Root directory where the targets (image files) are stored. Default value is the directory where the server is launched.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logFile}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$lf}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{File where logs are saved.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logXML}} & \multicolumn{4}{|l|}{$\{$boolean$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$lx}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{XML format is used in the log file. Value is a boolean: 0 indicates simple file format is used and 1 indicates XML format is used.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logEnabled}} & \multicolumn{4}{|l|}{$\{$boolean$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$le}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Enables or disables the log. See the "-ll" parameter for more information about the detail level of logs.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$logLevel}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ll}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the severity of the messages which will be logged. The "-le" parameter is set automatically. Available values are:\newline	2- logs informative messages\newline	3- logs warning messages\newline	4- logs error messages\newline when a log level is set, all upper levels are automatically set but lower severity messages are filtered.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{2} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$cacheDirectory}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cd}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Directory used as a temporal directory to save the cache data (not implemented yet).} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$deliveringMode}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$dm}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates the rate distortion method which is used in a JPEG2000 image to calculate de Window Of Interest. Available values are:\newline	1- precinct data are delivered layer by layer just as they appear in the codestream\newline	 2- the CPI method is uses to calculate the WOI. It only can be used with request that belongs to a session.\newline	3- the CoRD method is uses to calculate the WOI.\newline	4- applies a window scaling factor to each precinct to be delivered consisting on the overlap factor of each precinct with the window of interest requested.\newline OBS: Option 3 has been temporary disabled.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{4} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$cpiType}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cpit}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates, within the CPI rate-distortion method, the subtype which will be used to delivery the requested WOI. This parameter must be only available when the rate-distortion (-rd) parameter is 2. Otherwise, it won't be taken into account. Available values are:\newline	1- Only one packet for each precinct is generated. Therefore, delivered image has only one quality layer.\newline	2- Creates one packet per each bit plane. Therefore, delivered image has as quality layers as number of bit planes.\newline	3- Creates one packet per each coding pass. Therefore, delivered image has as quality layers as number of coding passes.\newline 4- Images are delivered following the SCALE method.\newline This parameter is only allowd if the "-dm" parameter is 2.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$cordType}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cordt}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates, within the CPI rate-distortion method, the subtype which will be used to delivery the requested WOI. This parameter must be only available when the rate-distortion (-rd) parameter is 2. Otherwise, it won't be taken into account. Available values are:\newline	1- Is the classic CoRD algorithm.\newline	2- Is a modification of the CoRD algorithm in order to reduce the overhead of packet and JPIP message headers.\newline This parameter is only allowd if the "-dm" parameter is 3.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$deliveryProgressionOrder}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$dpo}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates the progression order which will be used to delivery data. If this parameter is not set, the progression order of the codestream will be used. Otherwise, the progression order of the codestream will not be taken into account. Available values are:\newline	0- Layer-Resolution-Component-Position (LRCP).\newline	1- Resolution-Layer-Component-Position (RLCP).\newline	 2- Resolution-Position-Component-Layer (RPCL).\newline	 3- Position-Component-Resolution-Layer (PCRL).\newline 	4- Component-Position-Resolution-Layer (CPRL).\newline This parameter is only allowed if the "-dm" parameter is 1.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$keepAliveTiemout}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$kt}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the timeout (in milliseconds) that the socket is kept opened and waiting for new client requests.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$maxRate}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$mr}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the maximum rate (bytes per second) which will be used to delivery data (0 means unlimited).} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$trafficShaping}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ts}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Allows to choose a trafic shaping algorithm. Allowed values are:	0- None algoritm is applied.	1- The token-bucket algoritm is applied. Data are transmitted at the constant rate fixed by the "-mr" parameter rate, but it also allows data busts.	2- The leaky-bucket algoritm is applied. Data are delivered at the constant rate defined in the "-mr" option.OBS: This parameter requires the "-mr" parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$independentMessageHeaders}} & \multicolumn{4}{|l|}{$\{$booelan$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$imh}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Indicates which form of JPIP messsage headers will be used (independent or dependent). The independent form is a long form where the message headers are completely self-describing. Meanwhile, the depenent form message headers make use of information in the headers of previous messages. The dependent form makes a shorter message header than the independent form, but sequence ordering of received message must be taken into account.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$predictiveModel}} & \multicolumn{4}{|l|}{$\{$boolean$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$pm}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{This parameter indicates that a predictive model can be applied in the image delivering. The predictive model to be applied is read from a text file whose name is the same as the compressed image but with the extension "pm". The file must have a line for each spatial region (precinct) with the following format "precinct\_id value", where the precinct\_id is the unique precinct identifier defined in the JPIP protocol and the value is a real number in the range [0, 1] with the relevance of the relevance of the precinct. The remainder precincts not included in the file will be considered with relevance 0. And if the beginning-of-line character is an \#, it is considered a comment and ignored.This parameter is only allowed if the "-dm" parameter is 4.
+} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$help}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$h}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Displays this help and exits program.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$warranty}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$w}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$liability}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$l}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$copyright}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$c}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}

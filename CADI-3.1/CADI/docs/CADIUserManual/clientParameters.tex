@@ -1,0 +1,244 @@
+CADIClient version 3.1
+
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$server}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$s}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Server name where the image to be retrieved is.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{localhost} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$port}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$p}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Port number where the server is listening to client requests.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{80} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$proxyServer}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ps}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Server name where the image to be retrieved is.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$proxyPort}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$pp}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Port number where the server is listening to client requests.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{8080} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$target}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$t}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Targets to be retrieved from the server. If this parameter is not set, the uri ("-u") parameter must be appear.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$uri}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$u}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is an Uniform Resource Identifier of the target to be retrieved. If this parameter is not set, the target ("-t") parameter must be appear.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$outputImage}} & \multicolumn{4}{|l|}{$\{$string$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$o}} & \emph{Mandatory:} & Yes & \emph{Max reps:} & $\infty$ \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Output image file name where recovered image samples will be stored. Image file type will be decided depending on the extension. Valid file types are:\newline RAW/IMG raw data (if outputImage is raw data, "-og" argument is mandatory)\newline PNM/PGM/PPM PGM is used when image have 1 component, PPM when there are 3 components and PNM for both\newline TIFF\newline JPEG (not recommended because it degenerates recovered image)\newline BMP (not recommended)\newline ATTENTION: if recovered image samples are signed only RAW/IMG data with a signed data type will preserve image samples consistently. Using other file format will cause image data damages.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$ouputImageGeometry}} & \multicolumn{4}{|l|}{$\{$int int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$og}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Image raw data type. Parameters are:\newline 1- data type. Possible values are:\newline   0- boolean (1 byte)\newline   1- unsigned int (1 byte)\newline   2- unsigned int (2 bytes)\newline   3- signed int (2 bytes)\newline   4- signed int (4 bytes)\newline   5- signed int (8 bytes)\newline   6- float (4 bytes)\newline   7- double (8 bytes)\newline 2- Byte order (0 if BIG ENDIAN, 1 if LITTLE ENDIAN)} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$compnents}} & \multicolumn{4}{|l|}{$\{$int$[$int $[$int $[$ ...$]$$]$$]$$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cs}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Components of the image to be retrieved. This parameters is not compatible with the components ranges ("-cr") parameter} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$componentRanges}} & \multicolumn{4}{|l|}{$\{$int-int $[$int-int $[$int-int $[$ ...$]$$]$$]$$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$cr}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Ranges of components. This parameters is not compatible with the components ("-cr") parameter. \newline ATTENTION: This option is not implemented yet!} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$resolutionLevel}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$rl}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the resolution level at which the image is retrieved. This parameter is not compatible with frame size ("-fs") parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$frameSize}} & \multicolumn{4}{|l|}{$\{$int int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$fs}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the resolution level associate with the Window of Interest. The first value is the width, and the second one is the height. This parameter is not compatible with resolution level ("-rl") parameter.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$regionOffset}} & \multicolumn{4}{|l|}{$\{$int int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ro}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the top-left coordinates of the Window of Interest. The first value is the left coordinate, and the second on is the top coordinate.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$regionSize}} & \multicolumn{4}{|l|}{$\{$int int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$rs}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Is the size of the Window of Interest. The first value is the width, and the second one is the height.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$layers}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ly}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the maximum number of layers which will retrieved for the target.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$quality}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$q}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the maximum quality which will retrieved for the target.\newline ATTENTION: This option is not implemented yet!} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{100} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$roundDirection}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$rd}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies how the image resolution shall be selected. Allowed values:\newline  1- round-down\newline  2- round-up\newline  3- closest} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{1} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$maxTargetLength}} & \multicolumn{4}{|l|}{$\{$int$\}$} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$ml}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Specifies the maximum amount of bytes the client wants the server to send in response to the client request.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{0} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$help}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$h}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Displays this help and exits program.} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$warranty}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$w}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$liability}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$l}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}
+\begin{center}\begin{tabular}{|rr|rl|rl|}
+\hline
+\multicolumn{2}{|l|}{\textbf{$-$$-$copyright}} & \multicolumn{4}{|l|}{} \\
+\cline{3-6}
+\multicolumn{2}{|l|}{\textbf{$-$c}} & \emph{Mandatory:} & No & \emph{Max reps:} & 1 \\
+\hline
+\emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\emph{Default:} & \multicolumn{5}{|p{12cm}|}{} \\
+\hline
+\end{tabular}\end{center}

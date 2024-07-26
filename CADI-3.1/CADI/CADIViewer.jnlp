@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+"
+  codebase="http://gici.uab.es/CADI/test/"
+  href="http://gici.uab.es/CADI/test/CADIViewer.jnlp"
+>
+<information>
+  <title>CADI Viewer</title>
+  <vendor>Group on Interactive Coding of Images</vendor>
+  <description>JPIP Viewer</description>
+</information>
+<offline-allowed/>
+<security>
+	<all-permissions/> 
+</security>
+<resources>
+  <j2se version="1.6+" />
+  <jar href="http://gici.uab.es/CADI/test/CADIViewer.jar"/>
+</resources>
+<application-desc main-class="CADI.CADIViewer" />
+</jnlp>

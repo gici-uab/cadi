@@ -1,0 +1,1 @@
+START "CADI Viewer" /MIN java -Xmx1200m -jar CADIViewer.jar

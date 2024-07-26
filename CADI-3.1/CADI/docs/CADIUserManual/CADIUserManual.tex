@@ -1,0 +1,428 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[]{graphicx}
+\usepackage{subfigure}
+\usepackage[]{times}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{framed}
+\usepackage{hyperref}
+
+\geometry{verbose,a4paper,tmargin=1.5cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\renewcommand{\baselinestretch}{1.0}
+
+\title{CADI user manual \\ \small (version 3.1)}
+
+\author{
+GICI group \vspace{0.1cm} \\
+\small Department of Information and Communications Engineering \\
+\small Universitat Aut{\`o}noma Barcelona \\
+\small http://www.gici.uab.es  -  http://www.gici.uab.es/CADI \\
+}
+
+\date{\today}
+
+\hyphenation{CADIServer}
+\hyphenation{CADIClient}
+\hyphenation{CADIViewer}
+\hyphenation{CADIProxy}
+
+\begin{document}
+
+\maketitle
+\begin{figure}
+	\centering
+	\subfigure{
+   		\includegraphics[scale=0.4] {images/logoUAB.png}
+ 	}
+ 	\hspace*{0.2\textwidth}
+ 	~\subfigure{
+   		\includegraphics[scale=0.4] {images/logoGICI.png}
+ 	}
+ 	\hspace*{0.2\textwidth}
+ 	~\subfigure{
+   		\includegraphics[scale=0.4] {images/logoDEIC.png}
+ 	}
+\end{figure}
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overview}
+\label{sect:overview}
+
+CADI is an implementation of the JPEG2000 Interactive Protocol (Part 9) standard.
+Since the JPIP protocol is a client-server protocol, CADI is composed of four
+applications: CADIServer (that implements a JPIP server), CADIViewer (implmenting
+a Graphical User Interface for the JPIP client side), CADIClient (implementing
+a JPIP client), and CADIProxy (that implments a JPIP proxy). All applications
+are encapsulated in jar files in the \emph{dist/} directory and can be executed
+separately using the JVM. 
+
+The implementation provides the basic functionalities of the JPIP protocol, Basic
+Communications Profile, and several capabilities of the Enhanded  Communication
+Profile.
+ 
+The source code of CADI has been designed and programmed with the aim to provide
+a flexible framework, allowing users to easily integrate their modules to test
+and develop new ideas inside the JPIP protocol in a easy way.
+
+All applications, except for CADIViewer, provide different functionalities that
+can be controlled via their command line parameters, they are passed as program
+arguments. Each one of these parameters and their valid arguments will be
+detailed in the section devoted to each of the four applications.
+
+
+A development	manual is also available and the API is well documented
+to facilitate an easy understanding, extension and modification of
+the application. All the design and implementation details are widely
+explained in these manuals and the source code is commented. All
+these information is publicly available in the web page
+http://www.gici.uab.es/CADI, where you can download the sources and
+the manuals. To guarantee a free distribution, CADI has the General
+Public License (GNU GPL) of the Free Software Foundation
+(http://www.fsf.org/licensing/licenses/gpl.html).  
+
+We have tried to make a good design and efforts have been made to
+develop and implement the application as useful as
+desirable. However, we could not foresee all the needs of CADI
+users, so we will thank you for all the suggestions and comments
+that you can report to us (gici-dev@deic.uab.es). 
+
+\flushright{We hope you enjoy it, \vspace{0.25cm}\\GICI group}\flushleft{} 
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CADIServer}
+\label{sect:server}
+
+The CADIServer application implements the server side of the JPIP protocol,
+allowing JPIP clients to download JPEG2000 images.
+
+CADIServer does not have a graphical interface and it must be launched from the
+command line. Since the \emph{CADIServer.jar} is in the \emph{dist/} directory,
+the following command {\tt java -jar dist/CADIServer.jar} will launch the server
+using the default options (see section \ref{sect:server_parameters} for
+detailed options).
+
+\subsection{CADIServer parameters}
+\label{sect:server_parameters}
+
+In this section all supported parameters for the server command line are explained.
+For a detailed description of each element in the table displayed for each parameter,
+please see \ref{sect:annex_parameters}.
+
+
+\input{serverParameters}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples}
+\label{sect:examples}
+
+Some basic examples of CADIServer usage and combination of the different options
+of the command line parameters are shown in this section.
+
+\begin{itemize}
+	\item Launch the server with the default options. Server is listening to in the
+	port 80, the current directory is the path where images must be placed, it
+	launches as threads as number of processors, and it uses the Window Scaling
+	Factor as strategy for delivering images.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar}
+	\end{framed}
+
+	\item Display the help information.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar -h}
+	\end{framed}
+	
+	\item Launch the server listening to on por 2080.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar -p 2080}
+	\end{framed}
+	
+	\item Change the root path from where images (targets) are red to the \emph{workDir} directory.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar -tp workDir}
+	\end{framed}
+
+	\item Change the rate-distortion algorithm used to deliver images.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar -rd 2}
+	\end{framed}
+	
+	\item Adjust the maximum rate images are delivering (10KB) and set the 
+	the token-backut as traffic shaping algorithm.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIServer.jar -ts 1 -mr 10000}
+	\end{framed}
+	
+\end{itemize}
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CADIClient}
+\label{sect:client}
+
+The CADI client application implements the client side of the JPIP protocol. It
+is a command line application to get images from a JPIP server and save them
+in a file.
+
+Session cannot be used!.
+
+\subsection{CADIClient parameters}
+\label{sect:client_parameters}
+In this section all supported parameters for the server command line are explained.
+For a detailed description of each element in the table displayed for each parameter,
+please see \ref{sect:annex_parameters}.
+
+
+\input{clientParameters}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples}
+\label{sect:client_examples}
+
+\begin{itemize}
+	\item Display the help information.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIClient.jar -h}
+	\end{framed}
+	
+	\item Request the image "image.jpc" from a JPIP server running on the local
+machine on port 80. The downloaded image is saved in the file "output\_image.ppm".
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIClient.jar -t image.jpc -o output\_image.ppm}
+	\end{framed}
+	
+	\item Request the image "image.jpc" from a JPIP server running on the machine
+	"jpipserver.domain" on port 9000. The downloaded image is saved in the file
+	"output\_image.ppm".
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIClient.jar -t image.jpc -s jpipserver.domain -p 9000 -o output\_image.ppm}
+	\end{framed}
+	
+	\item Request the image "image.jpc" from a JPIP server running on the machine
+	"jpipserver.domain" on port 9000 through a JPIP proxy that is running on the machine "jpipproxy.domain" on port 8080.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIClient.jar -t image.jpc -s jpipserver.domain -p 9000 -ps jpipproxy.domain -pp 8080 -o output\_image.ppm}
+	\end{framed}
+	
+	\item Request a window/region of the image. The client requests for 10 layers
+	of a region of the image "image.jpc" defined by the frame size of
+	5000$\times$4000 pixels located at position 1000$\times$1000 and size
+	1024$\times$768.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIClient.jar -t image.jpc -fs 5000 4000 -ro 1000 1000 -rs 1024 768 -ly 10 -o output\_image.ppm}
+	\end{framed}
+
+\end{itemize}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CADIViewer}
+\label{sect:viewer}
+
+The CADIViewer application is a Graphical User Interface of the CADI client.\\
+\vspace*{0.5cm}
+Once the CADIViewer has been launched ({\tt java -jar dist/CADIViewer.jar})
+next window will be displayed.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-ini.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+Next step is to open a new session through the menu \emph{File $>$ New Session}
+or by means of the shortcut \emph{Alt+N}. It will open a New Session Dialog window.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-MenuFile.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+In the \emph{New Session Dialog} window there are two sections: JPIP server and
+Proxy server. Only parameters in the JPIP server are mandatory. Then, the
+\emph{Target} is the JPEG2000 image to be requested, the \emph{Host} is the 
+server where the JPIP server is running on, and the \emph{Port} is the port on where
+the JPIP server is listening to. Regarding the Proxy server section, the 
+\emph{Host} is the server name where the JPIP proxy is running on, and the
+\emph{Port} is the port of the JPIP proxy. Moreover, advanced preferences
+can be configured if click \emph{Preferences} button.
+button 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-NewSessionDialog.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+The \emph{Preferences dialog window} is opened if the \emph{Preference} boton has
+been clicked. In this dialog window prefences are grouped in three tabs.
+\emph{Session type} allows to configure the connection to the JPIP server using
+Statless or Stateful sessions (only Sessions over HTTP are available). Stateful
+connections are recommended because they reduce the amount of data to be sent
+to the server.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-PreferencesDialog_SessionType.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+The tab \emph{Cache} in the \emph{Preferences dialog window} allows to configure
+the type of cache to be used in the client or not to use cache. Each type of cache
+can be qualified to be more precise in the type to use. \\
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-PreferencesDialog_Cache.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+Regarding the tab \emph{Advanced} in the \emph{Preferences dialog window} allows to
+set detailed options of the JPIP protocol. It is not recommened to modify this options
+unless you are sure about their meaning. \\
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-PreferencesDialog_advanced.png} \\
+\end{figure}
+\vspace*{0.5cm}
+
+The menu \emph{Edit $>$ Preferences} opens the \emph{Preferences} dialog window to
+configure the logs of the application. Logs can be enabled or disables in the 
+\emph{Enable} check. If enabled, it is mandatory to choose the format, the level of
+detail, and the destination (console or file). \\
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{images/CADIViewer-screenshot-EditPreferences.png} \\
+\end{figure}
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CADIProxy}
+\label{sect:proxy}
+The CADIProxy applications implements a JPIP proxy. It is a command line application
+that not only caches all images server through the proxy but it can do prefetching.
+
+\subsection{CADIProxy parameters}
+\label{sect:proxy_parameters}
+
+\input{proxyParameters}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples}
+\label{sect:proxy_examples}
+
+In this section all supported parameters for the server command line are explained.
+For a detailed description of each element in the table displayed for each parameter,
+please see \ref{sect:annex_parameters}.
+
+
+\begin{itemize}
+
+	\item Launch the JPIP proxy with the defualt options. Thus, the proxy is running on port 8080, it uses as number of threads as number of processors, and it is configure to work on prefetching mode with all the movements equally likely.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -h}
+	\end{framed}
+
+	\item Display the help information.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -h}
+	\end{framed}
+	
+	\item Proxy working as a transparent proxy.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -t 1}
+	\end{framed}
+	
+	\item Proxy working in \emph{cache mode}.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -t 2}
+	\end{framed}
+	
+	\item Proxy in prefethcing mode. Proxy is configured to do prefetching using as historic the lastest Window of Interest requested by all clients over each image and predicting the region to the image to be requested as a weigthing of the historic. Probabilities used to compute the next potential region are the same for all the movements (0.1).
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -t 3 -pdh 3 -pwt 1}
+	\end{framed}
+	
+	\item This example is the same as the previous one, but in this case the probabilities used to compute the next potential region of the image to be requested have been set to 0.075 for the panning movements and 0.2 for the zooms.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -t 3 -pdh 3 -pwt 1 -mp 0.075 0.075 0.075 0.075.075 0.075 0.075 0.075  0.2 0.2}
+	\end{framed}
+	
+	\item Proxy is configure to work as a prefetching proxy using the predictive model qualifier to compute the next potential region to be requested. Files containing the semantic information about images are in the \emph{pred\_models} directory.
+	\begin{framed}
+	\texttt{\$java -jar dist/CADIProxy.jar -t 3 -pdh 3 -pm pred\_models/}
+	\end{framed}
+	
+	
+\end{itemize}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Annex: Parameters description}
+\label{sect:annex_parameters}
+Parameters have two formats: the long and the short
+specification. Long specification has $-$$-$ at the beginning while
+short specification has $-$ (it does not matter which one you
+choose). Each parameter has its own arguments, which usually are
+integers, floats, booleans (0 to indicate false and 1 to indicate
+true) or strings. If the user specifies some invalid arguments, the
+application will display warning messages. Most of these parameters
+are not mandatory. When they are not specified default values are
+used. The following table shows how each parameter will be
+displayed in this manual: 
+
+\begin{center}\begin{tabular}{|rr|rlrl|}
+	 \hline
+	 \multicolumn{2}{|l|}{\textbf{$-$$-$longParameter}} &
+	 \multicolumn{4}{|l|}{$\{$parameter arguments$\}$} \\
+	 \cline{3-6}
+	 \multicolumn{2}{|l|}{\textbf{$-$shortParameter}} & \emph{Mandatory:} & Yes/No & &  \\
+	 \hline
+	 \emph{Explanation:} & \multicolumn{5}{|p{12cm}|}{Parameter explanation} \\
+	 \hline
+	 \emph{Default:} & \multicolumn{5}{|p{12cm}|}{Parameter default values.} \\
+	 \hline
+\end{tabular}\end{center}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Annex: Requirements}
+\label{sect:annex}
+
+\subsection*{Libraries}
+\label{ssect:annex_libraries}
+
+CADISoftware only needs the JRE version 1.6 or higher to run.
+
+
+\subsection*{Compilation}
+\label{ssect:annex_compilation}
+
+Compile the CADISoftware is easy because there is a \emph{build.xml} file ready to compile the project. The binaries of the complied project will be in the \emph{dist/} directory. It must be noted that the Java Advanced Imaging (JAI) is necessary to compile the source code.
+
+
+\subsection*{JVM parameters}
+\label{ssect:annex_jvm}
+
+The amount of memory depends on the CADI Software application. Thus, the memory requirements of CADIServer are low and they will depend on the number of images being served because it only works with a indexed image. However, in the CADIClient or CADIViewer the amount of memory depends on the dimensions of the image region to be decoded, the larger is the region the more memory is needed. And regarding the CADIProxy, it gathers both requirements of CADIServer and CADIClient.
+
+In order to avoid a Java Heap Memory error when CADISoftware is run, it is recommended to set the maximum amount of memory that the application can allocate via the \emph{-Xmx} parameter of the JVM, i.e. \emph{java -Xmx1024m -jar dist/CADIServer.jar}.
+
+
+\end{document}

@@ -1,0 +1,109 @@
+CADI Software ChangeLog
+
+
+Version 1.2.1                  2008-05-08
+-----------------------------------------
+
+* New features/improvements:
+
+  - Title: client cache management policy
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: a cache management policy has beed added to the
+    client cache. It allows to fix a maximum size for the data and
+    to perform a management policy when the maximum size threshold
+    has been reached. Two management policy methods has been
+    implemented: LRU and FIFO
+
+* Fixes:
+  - Title: decompress independent components
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Identifier:
+    Description: the bug was in BlockDecode class (CADIClient) and
+    it did a bad decompression of an image when only one component
+    had been requested. The bug was set in the version 1.2
+
+* Other/Documentation:
+  - Documentation about the server and client parameters has been
+    updated.
+
+
+Version 1.2                    2008-05-01
+-----------------------------------------
+
+* New features/improvements:
+
+  - Title: spectrally transformed images
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: CADI software is able to manage JPEG2000 images
+    spectrally transformed. This kind of images are not JPEG2000
+    standard compliant, so the compresed-images main headers has been
+    modified in order to support new parameters.
+    CADI server has been adapted to read and decode the new main
+    headers.
+    CADI client has a new module to decompress this images
+    (JPEG2KDecoder3D), and the JPEG2KLogicalTarget module has also been
+    modified in order to read and decode the new main headers and select
+    which are the needed components to decompress one.
+  - Title: delivery progression orders
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: a new command line parameter (-dpo) has been added to
+    the server. This parameter allows to delivery the requested WOI
+    following a fixed progression order independently of the progression
+    order used to save the codestream.
+  - Title: -mr (--maxRate) line parameters (CADIServer)
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: a new parameter has been added in the server to limit
+    the maximum delivery rate.
+
+* Fixes:
+  - Title: response WOI adjusting
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Identifier:
+    Description: the bug was when the WOI was adjusting and the region-
+    offset left coordinate was 0, but the top coordinate wasn't.
+  - Title: achieved maximum number of bytes for a request
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Identifier:
+    Description: the bug sent a wrong JPIP message when the maximum
+    number of bytes for a requested WOI has been achieved but not
+    exceeded, therefore a a wrong message was sent (but it did not
+    have influence in CADI Client because it threw out the message).
+
+* Other/Documentation:
+  - Added ...
+  - Updated ...
+
+
+Version 1.0.1                  2008-01-22
+-----------------------------------------
+
+* New features/improvements:
+
+  - Title: -cpit line parameter
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: a new parameter (-cpit) has been added to the
+    input parameter line to choose the kind of CPI rate-distortion
+    method used to delivery the requested WOI.
+
+  - Title: decoding certain number of components
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: the JPEG2000 decoder has been updated to support
+    decoding of certain number of components of the image. These
+    components may be or not consecutives and all of the image
+    components must be independent of the others.
+
+  - Title: jpip client is able to get an image at a fixed target rate.
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Description: the jpip client (Client class in CADI.Client package)
+    the getTarget methods has been extended to be able to get requested
+    images at a fixed target rate.
+
+* Fixes:
+  - Title: feature title
+    Author: Jose Lino Monteagudo Pereira <jlino@deic.uab.es>
+    Identifier: a number
+
+
+* Other/Documentation:
+  - Added ...
+  - Updated ...

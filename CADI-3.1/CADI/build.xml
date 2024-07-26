@@ -1,0 +1,131 @@
+<project name="CADI" default="compile" basedir=".">
+	<property name="name" value="CADI" description="Project name."/>
+	<property name="src" value="src" description="The sources of the project."/>
+	<property name="build" value="build" description="The build files (.class) of the project."/>
+	<property name="dist"  value="dist" description="The final file (.jar) of the project."/>
+	<property name="docs"  value="docs" description="The API documentation."/>
+	<property name="workDir"  value="workDir" description="The work directory of the project."/>
+        <property name="GiciLibsPath" value="../GiciLibs/" description="Path where the GiciLibs are."/>
+   <property name="version" value="3.1"/>
+   <property name="year" value="2007-2012"/>
+   <echo message="  --------- ${name} ${version} [${year}] ----------"/>
+   <echo message="--- Group on Interactive Coding of Images ---"/>
+
+    <!-- =================================================================== -->
+    <!-- Help on usage                                                       -->
+    <!-- =================================================================== -->
+    <target name="usage">
+      <echo message=""/>
+      <echo message=""/>
+      <echo message="${name} ${version} Build file"/>
+      <echo message="-------------------------------------------------------------"/>
+      <echo message=""/>
+      <echo message=" available targets are:"/>
+      <echo message=""/>
+      <!--echo message="   package  > generates the ${name}.jar file"/-->
+      <echo message="   compile  --> compiles the source code (default)"/>
+      <echo message="   javadoc  --> generates the API documentation"/>
+      <echo message="   clean    --> cleans up the directory"/>
+      <echo message=""/>
+      <echo message=" See the comments inside the build.xml file for more details."/>
+      <echo message="-------------------------------------------------------------"/>
+      <echo message=""/>
+      <echo message=""/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- Compile                                                             -->
+    <!-- =================================================================== -->
+	<target name="compile" depends="jar, check-jdk" description="Compile the project. The class files are saved in build directory and the .jar file in dist directory.">
+		<delete file="${dist}/${name}.jar"/>
+		<javac srcdir="${src}" destdir="${build}" nowarn="off" optimize="on" deprecation="on" debug="on">
+                        <src path="${GiciLibsPath}"/>
+			<exclude name="**/jUnits/*"/>
+		</javac>
+		<jar destfile="${dist}/${name}Client.jar" basedir="${build}" manifest="${src}/${name}/manifestCADIClient.mf"/>
+		<jar destfile="${dist}/${name}Server.jar" basedir="${build}" manifest="${src}/${name}/manifestCADIServer.mf"/>
+		<jar destfile="${dist}/${name}Viewer.jar" basedir="${build}" manifest="${src}/${name}/manifestCADIViewer.mf"/>
+		<jar destfile="${dist}/${name}Proxy.jar" basedir="${build}" manifest="${src}/${name}/manifestCADIProxy.mf"/>
+	</target>
+
+    <target name="jar" >
+       <copy todir="${build}">
+           <fileset dir ="${src}">
+              <include name="${name}/*/*/**.png"/>
+              <include name="${name}/*/**.properties"/>
+              <include name="${name}/*/*/**.properties"/>
+          </fileset>
+      </copy>
+      <jar destfile="${dist}/${name}.jar" basedir="${build}" manifest="${src}/${name}/manifestCADIViewer.mf"/>
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- Documentation                                                       -->
+    <!-- =================================================================== -->
+	<target name="doc" description="Generate the API documentation for the project.">
+		<delete dir="${docs}/api"/>
+		<mkdir dir="${docs}/api"/>
+		<javadoc destdir="${docs}/api" author="true" access="private" windowtitle="CADI API">
+			<fileset dir="${src}" defaultexcludes="yes">
+				<include name="Gici*/**.java" />
+				<include name="${name}/**.java" />
+				<include name="${name}/*/**.java" />
+				<include name="${name}/*/*/**.java" />
+                <include name="${name}/*/*/*/**.java" />
+                <include name="${name}/*/*/*/*/**.java" />
+			</fileset>
+			<doctitle>
+				<![CDATA[<h1>CADI API (GICI)</h1>]]>
+			</doctitle>
+			<bottom>
+				<![CDATA[
+					<i>CADI - Copyright (C) 2007</i><br>
+					This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.<br>
+					This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> for more details.<br><br>
+					<a href="http://www.gici.uab.es">Group on Interactive Coding of Images (GICI)</a> (<a href="mailto:gici-info@abra.uab.es">contact</a>)
+				]]>
+			</bottom>
+		</javadoc>
+	</target>
+
+
+    <!-- =================================================================== -->
+    <!-- check-jdk                                                               -->
+    <!-- =================================================================== -->
+	 <target name="check-jdk">
+		<!--echo>os.name = ${os.name}</echo>
+		<echo>java.home = ${java.home}</echo>
+		<echo>java.vendor = ${java.vendor}</echo>
+		<echo>java.version = ${java.version}</echo-->
+		<echo>java.specification.version = ${java.specification.version}</echo>
+		<!--echo>ant.java.version = ${ant.java.version}</echo>
+		<echo>ant.version = ${ant.version}</echo-->
+		
+		<fail message="CADI Software needs the Java version 1.6 or higher.">
+		  <condition>
+			 <not>
+				<matches pattern="1.[67]" string="${java.specification.version}" casesensitive="false"/>
+			 </not>
+		  </condition>
+		</fail>
+
+	 </target>
+
+
+    <!-- =================================================================== -->
+    <!-- Clean                                                               -->
+    <!-- =================================================================== -->
+	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${build}" includes="**/*"/>
+		</delete>
+		<delete>
+			<fileset dir="${dist}" includes="*.*"/>
+		</delete>
+		<delete dir="${docs}/api"/>
+		<!--delete>
+			<fileset dir="${workDir}" includes="*.*"/>
+		</delete-->
+	</target>
+</project>

@@ -1,0 +1,2 @@
+#!/bin/bash
+java -ea -Xmx1200m -jar dist/CADIServer.jar $@

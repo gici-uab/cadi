@@ -1,0 +1,68 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[]{graphicx}
+\usepackage[]{times}
+\usepackage{geometry}
+
+\geometry{verbose,a4paper,tmargin=1.5cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\renewcommand{\baselinestretch}{1.2}
+
+\title{CADI installation manual \\ \small (version beta)}
+
+\author{
+GICI group \vspace{0.1cm} \\
+\small Department of Information and Communications Engineering \\
+\small Universitat Aut{\`o}noma Barcelona \\
+\small http://www.gici.uab.es  -  http://www.gici.uab.es/CADI \\
+}
+
+\date{September 2007}
+
+\hyphenation{CADIServer}
+\hyphenation{CADIClient}
+\hyphenation{CADIViewer}
+
+\begin{document}
+\maketitle
+
+	CADI is programmed using the JAVA language. The used compiler is the
+	SUN JAVA 1.5. Hence, to run the application the Runtime Environment
+	is necessary. CADIViewer can save the recovered image in different
+   image types CADI, so it uses 
+	the JAI (Java Advanced Imaging) library. Thus, if you need to
+	manage different image formats apart of raw images you should
+	install it. This software can be freely downloaded from
+	\emph{http://java.sun.com}. 
+
+	CADI is provided with a single jar file (\emph{dist/CADI.jar}), that
+	contains the following two applications: CADIServer, CADIViwer. To run one
+	of these applications you can use the following command: 
+	\emph{java-classpath dist/CADIServer.java} and 
+	\emph{java-classpath dist/CADIViewer.java}
+	applications. In a GNU/Linux environment you can also use the shell
+	scripts \emph{CADIServer}, \emph{CADIViewer}, \ldots situated at the
+	root of the CADI directory. 
+
+	To install CADI as a system program you can follow the following
+	steps: 
+
+	\begin{enumerate}
+		\item Decompress the CADI distribution and locate the
+		\emph{CADIServer.jar} and	\emph{CADIViewer.jar} files in some directory,
+		for example in \emph{/usr/local/CADI/CADIServer.jar} and
+		\emph{/usr/local/CADI/CADIViewer.jar}.  
+		\item Create the following shell script (for windows
+		environments you can create a bat file): 
+			\begin{verbatim}
+			#!/bin/sh
+			java -classpath /usr/local/CADI/CADIServer.jar CADI.CADIServer $@ 
+			\end{verbatim}
+			Rename this file and call it CADIServer.
+		\item Create another shell script (or bat file) for the client
+		called \emph{CADIViewer}. 
+		\item Put both shell scripts in some directory included in your
+		execution PATH variable. 
+		\item To execute the server or the client run \emph{CADIServer} or
+		\emph{CADIViewer} from your shell. 
+	\end{enumerate}
+
+\end{document}
